@@ -61,3 +61,67 @@ This project strives to contribute valuable information to the mountaineering co
 
 
 ## Project Structure
+
+/mount_rainier
+│
+├── data
+│ ├── kaggle_export.ipynb
+│ └── mount-rainier-weather-and-climbing-data.zip
+│ ├── climbing_statistics.csv
+│ └── Rainier_Weather.csv
+│ ├── clean_data.csv
+│
+├── data_cleaning
+│ ├── data_cleaning_workbook.ipynb
+│ └── [Other relevant files]
+│
+├── notebooks
+│ ├── clean_data.ipynb
+│ └── mt_rainier_eda.ipynb
+│
+├── models
+│ ├── mlr_model.ipynb
+│
+├── visualizations
+│ ├── tableau.md
+│
+├── .gitignore
+├── README.md
+
+
+## Getting Started
+
+
+## Data Extraction
+The data for this project was extracted from Kaggle using the Kaggle API, which facilitates seamless access to datasets hosted on the Kaggle platform. The dataset is available at [Mount Rainier Weather and Climbing Data](https://www.kaggle.com/datasets/codersree/mount-rainier-weather-and-climbing-data). Utilizing the Kaggle API, the extraction process involved authenticating with Kaggle, downloading the datasets and extracting them to .csv files.
+
+## Data Cleaning
+
+The clean_data.ipynb workbook provides the data cleaning operations used on the weather and climbing dat. The key operations performed are as follows:
+
+1. **Importing Data:**
+   - The two datasets, `climbing_statistics.csv` and `Rainier_Weather.csv`, are imported as Pandas DataFrames.
+   - 'Date' columns are formatted as datetime.
+
+2. **Merging Datasets:**
+   - The climbing statistics and weather datasets are merged using a left outer join on the 'Date' column.
+   - Rows with null weather data are dropped from the resulting dataset.
+
+3. **Review and Clean Data:**
+   - Undesired columns ('Battery Voltage AVG', 'Solare Radiation AVG') are removed.
+   - Route names are standardized and certain routes are dropped
+
+4. **Handling Anomalies:**
+   - Anomaly was identified where successful summits exceed attempts in a given day.
+   - Six rows with this anomaly were dropped.
+
+5. **High-Level Exploratory Data Analysis (EDA):**
+   - Brief EDA included exploration of correlations and box plots to identify outliers and data skewing.
+
+6. **Exporting Cleaned Data:**
+   - Cleaned dataset exported to 'clean_data.csv' for further EDA and visualization.
+
+7. **Note:**
+   - Outliers identified during EDA were noted but left untreated at this stage.
+  
+The cleaned dataset is now ready for more in-depth exploratory data analysis and visualization in the `mt_rainier_eda.ipynb` notebook.
